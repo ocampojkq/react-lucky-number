@@ -1,19 +1,23 @@
 import React from "react";
 
+import { useState } from "react";
+
 const SixDigits = () => {
+  const [num, setNum] = useState("000000");
+
+  function randomNumberInRange(min, max) {
+    return Math.floor(Math.random() * 899999 + 100000);
+  }
+  const handleClick = () => {
+    setNum(randomNumberInRange(0, 99));
+  };
+
   return (
     <div class="conatiner text-center">
-      <h1 class="text-center pt-5 text-info">6 Digits</h1>
-      <div class="text-center">
-        <h3 class="pt-5 text-info circle-number" id="digit-six">
-          000000
-        </h3>
-      </div>
-      <div class="text-center">
-        <button class="text-center mt-5 btn btn-info" onclick="digitSix()">
-          Lucky Number
-        </button>
-      </div>
+      <h1 class="pt-5 text-info circle-number">{num}</h1>
+      <button className="btn btn-info mt-3" onClick={handleClick}>
+        Lucky number
+      </button>
     </div>
   );
 };
