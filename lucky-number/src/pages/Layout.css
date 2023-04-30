@@ -1,0 +1,30 @@
+ul {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    
+  }
+  
+ li {
+    padding: 0 20px;
+    display: inline-block;
+    font-size: xx-large;
+  
+  }
+
+  .text-warning {
+    text-decoration: none;
+  }
+  .text-danger{
+text-decoration: none;
+  }
+  .text-primary{
+text-decoration: none;
+  }
+  .text-success{
+text-decoration: none;
+  }
+
+  .text-info{
+   text-decoration: none; 
+  }
