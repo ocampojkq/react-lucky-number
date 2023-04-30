@@ -28,3 +28,6 @@ text-decoration: none;
   .text-info{
    text-decoration: none; 
   }
+  h1 {
+    letter-spacing: 4px;
+  }
