@@ -6,8 +6,10 @@ import { Outlet, Link } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <nav>
-        <ul>
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0"></div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
           <li>
             <Link to="/" className="text-warning">
               Home
@@ -34,7 +36,9 @@ const Layout = () => {
             </Link>
           </li>
         </ul>
-      </nav>
+
+        <div class="col-md-3 text-end"></div>
+      </header>
 
       <Outlet />
     </>
