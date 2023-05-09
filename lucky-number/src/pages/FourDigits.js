@@ -4,13 +4,22 @@ import { useState } from "react";
 
 const FourDigits = () => {
   const [num, setNum] = useState("0000");
+  const [clicked, setClicked] = useState(false);
 
   function randomNumberInRange(min, max) {
     return Math.floor(Math.random() * 999 + 999);
   }
 
   const handleClick = () => {
-    setNum(randomNumberInRange(0, 99));
+    const rollTime = 3000;
+    if (!clicked) {
+      const newNum = randomNumberInRange(0, 9999);
+      setClicked(true);
+      setNum("Rolling..."); // set the initial text before rolling the number
+      setTimeout(() => {
+        setNum(newNum.toString().padStart(2, "0")); // update the number after roll time has passed
+      }, rollTime);
+    }
   };
 
   return (
