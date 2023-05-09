@@ -5,31 +5,44 @@ import { useState } from "react";
 const FourDigits = () => {
   const [num, setNum] = useState("0000");
   const [clicked, setClicked] = useState(false);
+  const [rolling, setRolling] = useState(false);
 
-  function randomNumberInRange(min, max) {
-    return Math.floor(Math.random() * 999 + 999);
+  function randomNumberInRange() {
+    return Math.floor(Math.random() * (9999 - 100 + 1) + 100);
   }
 
   const handleClick = () => {
-    const rollTime = 3000;
+    const rollTime = 2000;
     if (!clicked) {
-      const newNum = randomNumberInRange(0, 9999);
       setClicked(true);
       setNum("Rolling..."); // set the initial text before rolling the number
-      setTimeout(() => {
-        setNum(newNum.toString().padStart(2, "0")); // update the number after roll time has passed
-      }, rollTime);
+      setRolling(true);
+      let i = 0;
+      const interval = setInterval(() => {
+        setNum(randomNumberInRange().toString().padStart(2, "0")); // update the number at regular intervals
+        i++;
+        if (i === rollTime / 100) {
+          clearInterval(interval); // clear the interval after roll time has passed
+          setNum(randomNumberInRange().toString().padStart(2, "0")); // set the final number after the rolling is complete
+          setClicked(false);
+          setRolling(false);
+        }
+      }, 100); // set interval time to 100ms
     }
   };
 
   return (
     <div class="conatiner text-center">
-      <h1 class="pt-5 text-success circle-number">{num}</h1>
+      <h1 class="pt-5 text-success circle-number">
+        {rolling ? "Rolling..." : num}
+      </h1>
       <button className="btn btn-success mt-3" onClick={handleClick}>
-        Lucky number
+        Roll the number
       </button>
     </div>
   );
 };
 
 export default FourDigits;
+
+//  return Math.floor(Math.random() * 999 + 999);

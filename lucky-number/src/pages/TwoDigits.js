@@ -5,28 +5,39 @@ import { useState } from "react";
 const TwoDigits = () => {
   const [num, setNum] = useState("00");
   const [clicked, setClicked] = useState(false);
+  const [rolling, setRolling] = useState(false);
 
   function randomNumberInRange() {
     return Math.floor(Math.random() * 99 + 1);
   }
 
   const handleClick = () => {
-    const rollTime = 3000;
+    const rollTime = 2000;
     if (!clicked) {
-      const newNum = randomNumberInRange(0, 99);
       setClicked(true);
       setNum("Rolling..."); // set the initial text before rolling the number
-      setTimeout(() => {
-        setNum(newNum.toString().padStart(2, "0")); // update the number after roll time has passed
-      }, rollTime);
+      setRolling(true);
+      let i = 0;
+      const interval = setInterval(() => {
+        setNum(randomNumberInRange().toString().padStart(2, "0")); // update the number at regular intervals
+        i++;
+        if (i === rollTime / 100) {
+          clearInterval(interval); // clear the interval after roll time has passed
+          setNum(randomNumberInRange().toString().padStart(2, "0")); // set the final number after the rolling is complete
+          setClicked(false);
+          setRolling(false);
+        }
+      }, 100); // set interval time to 100ms
     }
   };
 
   return (
     <div class="conatiner text-center">
-      <h1 class="pt-5 text-primary circle-number">{num}</h1>
+      <h1 class="pt-5 text-primary circle-number">
+        {rolling ? "Rolling..." : num}
+      </h1>
       <button className="btn btn-primary mt-3" onClick={handleClick}>
-        Lucky number
+        Roll the number
       </button>
     </div>
   );
