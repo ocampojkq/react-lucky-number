@@ -19,7 +19,7 @@ const SixDigits = () => {
       setRolling(true);
       let i = 0;
       const interval = setInterval(() => {
-        setNum(randomNumberInRange().toString().padStart(2, "0")); // update the number at regular intervals
+        setNum(randomNumberInRange().toString().padStart(2, "0")); //  update the number at regular intervals
         i++;
         if (i === rollTime / 100) {
           clearInterval(interval); // clear the interval after roll time has passed
