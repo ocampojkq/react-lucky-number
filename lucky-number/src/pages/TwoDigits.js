@@ -15,7 +15,7 @@ const TwoDigits = () => {
     const rollTime = 2000;
     if (!clicked) {
       setClicked(true);
-      setNum("Rolling..."); // set the initial text before rolling the number
+      setNum("Rolling..."); //  set the initial text before rolling the number
       setRolling(true);
       let i = 0;
       const interval = setInterval(() => {
